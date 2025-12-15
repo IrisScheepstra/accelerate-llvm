@@ -199,7 +199,7 @@ compile pacc aenv = do
           -- gets pulled in even if the main executable is statically-linked and
           -- thus does not have a dynamic libm in its address space.)
           then callProcess ld ["--shared", "-o", sharedObjFile, objFile, "-undefined", "dynamic_lookup"]
-          else callProcess ld ["--shared", "-o", sharedObjFile, objFile, "-lm"]
+          else callProcess ld ["--shared", "-o", sharedObjFile, objFile]
         Debug.traceM Debug.dump_cc ("cc: new shared object " % shown) uid
 
     return sharedObjFile
